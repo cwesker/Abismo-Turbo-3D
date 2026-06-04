@@ -17,11 +17,9 @@ public class Terrain {
     private float[] treeZ;
     private float[] treeH;
 
-    // Configuración de las Montañas del Mundo 1 y 2 (Constantes fijas)
     private static final float MT_X = 0f, MT_Z = 0f;
     private static final float MT_BASE = 180f, MT_HEIGHT = 120f; 
 
-    // Configuración de las 3 Montañas Sucesivas del Mundo 4 (Arreglos)
     private float[] mtX = { 0f, -120f, 120f };
     private float[] mtZ = { 1100f, 650f, 150f };
     private float mtBase = 180f, mtHeight = 110f;
@@ -69,12 +67,10 @@ public class Terrain {
         else if (mundo == 4) {
             treeX = new float[0]; treeZ = new float[0]; treeH = new float[0];
             
-            // Agrega hitboxes fijas de las montañas del mundo 4
             for(int i = 0; i < 3; i++) {
                 colliders.add(new float[]{mtX[i], mtZ[i], mtBase * 0.5f});
             }
 
-            // Pinchos tridimensionales bien distribuidos en el pasillo ancho
             espinas.add(new float[]{-35f, -300f}); 
             espinas.add(new float[]{ 35f, -420f}); 
             espinas.add(new float[]{-35f, -540f}); 
@@ -174,7 +170,7 @@ public class Terrain {
             drawIsland(0, 800, RAD_ISLA1, p.color(110, 150, 60)); 
             drawIsland(0, -800, RAD_ISLA2, p.color(120, 140, 70)); 
             drawRampaDeSalto();
-            drawMountain(); // Llama ordenadamente a la versión sin argumentos
+            drawMountain(); 
             for (int i = 0; i < treeX.length; i++) drawTree(treeX[i], treeZ[i], treeH[i]);
         } 
         else if (mundo == 2) {
@@ -214,7 +210,6 @@ public class Terrain {
         
         drawIsland(0, -1850, 160, p.color(120, 160, 70)); 
 
-        // Bucle del mundo 4: Llama a la versión con argumentos parametrizados
         for (int i = 0; i < 3; i++) {
             drawMountain(mtX[i], mtZ[i], mtBase, mtHeight);
         }
@@ -359,12 +354,10 @@ public class Terrain {
         p.popMatrix();
     }
 
-    // ── SOBRECARGA 1: Montaña sin argumentos (Mundos 1 y 2) ────────────────
     private void drawMountain() {
         drawMountain(MT_X, MT_Z, MT_BASE, MT_HEIGHT);
     }
 
-    // ── SOBRECARGA 2: Montaña parametrizada con 4 flotantes (Mundo 4) ──────
     private void drawMountain(float mx, float mz, float base, float height) {
         p.pushMatrix();
         p.translate(mx, 50, mz);

@@ -7,7 +7,6 @@ public class CarViewScenario extends PApplet {
     Car     miCarro;
     Terrain miTerreno;
 
-    // ── MOTOR DE ESTADOS (4 MUNDOS LIBRES POR DEFECTO) ──────────────────────
     int gameState = 0; 
     int mundoActual = 1; 
     boolean[] mundosDesbloqueados = {true, true, true, true}; 
@@ -33,7 +32,6 @@ public class CarViewScenario extends PApplet {
 
     @Override
     public void setup() {
-        // CORRECCIÓN: Nombre limpio y atractivo en la barra de la ventana
         surface.setTitle("ABISMO TURBO 3D"); 
         reiniciarNivel();
     }
@@ -72,7 +70,6 @@ public class CarViewScenario extends PApplet {
         }
     }
 
-    // ── INTERFACES GRÁFICAS EN AZUL CON EL NUEVO NOMBRE ─────────────────────
     void dibujarMenuPrincipal() {
         background(45, 80, 135); 
         stroke(240, 105, 45);
@@ -83,7 +80,6 @@ public class CarViewScenario extends PApplet {
         textAlign(CENTER, CENTER);
         fill(255);
         textSize(55);
-        // CORRECCIÓN: Nombre del juego actualizado en el menú
         text("ABISMO TURBO 3D", width/2, height/3); 
         
         fill(240, 105, 45, 100);
@@ -244,7 +240,6 @@ public class CarViewScenario extends PApplet {
         miTerreno.display();
         miCarro.display();
 
-        // ── CAPA INTERFAZ HUD 2D ────────────────────────────────────────────
         camera(); 
         noLights();
         hint(DISABLE_DEPTH_TEST);

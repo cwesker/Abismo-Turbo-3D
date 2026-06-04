@@ -19,7 +19,6 @@ public class Car {
     public float nitro = 100f;
     public int colorMode = 0; 
 
-    // NUEVA VARIABLE COMPATIBLE: Activa el comportamiento de fantasma aéreo
     public boolean noclip = false; 
 
     private boolean fuegoNitroActivo = false;
@@ -39,7 +38,6 @@ public class Car {
     }
 
     public void update(boolean w, boolean s, boolean a, boolean d, boolean space) {
-        // MODIFICACIÓN NOCLIP: Si está activo, ignora las espinas punzantes para poder inspeccionar el carril
         if (!noclip && terrain.tieneColisionEspinas(x, z)) {
             ((CarViewScenario) p).reiniciarNivel();
             return;
@@ -65,14 +63,13 @@ public class Car {
         float nz = z - PApplet.cos(angle) * currentSpeed;
         wheelRotation += currentSpeed * 0.05f;
 
-        // MODIFICACIÓN NOCLIP DE COMPORTAMIENTO FÍSICO
+        // Noclip
         if (noclip) {
             y = 35f; // Altura flotante fija sobre las islas
             vy = 0f; // Anula por completo el vector de gravedad
-            x = nx;  // Avanza de forma directa omitiendo colisiones estructurales rígidas
+            x = nx;  // Avanza de forma directa en colición con las estructuras rígidas
             z = nz;
         } else {
-            // Comportamiento físico estándar original
             float alturaSuelo = terrain.obtenerAlturaSuelo(nx, nz);
             if (y < alturaSuelo - 1) { 
                 vy += gravity; 
